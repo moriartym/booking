@@ -2,13 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 const bookingSchema = new Schema(
   {
-    date: Date,
+    RoomNo: String,
     startTime: String,
+    duration: Number,
     endTime: String,
-    price: Number,
-    capacity: Number,
-    promoCode: String,
-    booked: Boolean,
   },
   {
     timestamps: true,
