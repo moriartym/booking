@@ -8,6 +8,10 @@ const roomSchema = new Schema(
         promocode: String,
         opening: String,
         closing: String,
+        maxDuration: {
+            type: Number,
+            default: 1
+        },
     },
     {
         timestamps: true,

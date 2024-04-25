@@ -4,7 +4,10 @@ const bookingSchema = new Schema(
   {
     RoomNo: String,
     startTime: String,
-    duration: Number,
+    duration: {
+      type: Number,
+      default: 1
+    },
     endTime: String,
   },
   {
