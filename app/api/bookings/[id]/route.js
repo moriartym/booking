@@ -11,7 +11,8 @@ export async function PUT(request, { params }) {
     newPrice: price,
     newCapacity: capacity,
     newPromoCode: promoCode,
-    newBooked: booked,
+    newTimeSlots: timeSlots,
+    newTimeBooked: timeBooked,
   } = await request.json();
   await connectMongoDB();
   await Booking.findByIdAndUpdate(id, {
@@ -21,7 +22,8 @@ export async function PUT(request, { params }) {
     price,
     capacity,
     promoCode,
-    booked,
+    timeSlots,
+    timeBooked,
   });
   return NextResponse.json({ message: "Topic updated" }, { status: 200 });
 }

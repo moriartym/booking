@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [isChecked, setIsChecked] = useState(true);
+  const [password, setPassword] = useState("");
+  const [username, setUserName] = useState("");
   const router = useRouter();
 
   const handleCheckboxChange = () => {
@@ -12,15 +14,19 @@ const LoginPage = () => {
   };
 
   const handleLogin = () => {
-    if (isChecked) {
-      router.push("/createBooking");
+    if (username != "" && password != "") {
+      if (isChecked) {
+        router.push("/studentBooking");
+      } else {
+        router.push("/staffBooking");
+      }
     } else {
-      router.push("/addBooking");
+      alert("Enter username and password");
     }
   };
 
   return (
-    <div className="flex w-screen h-screen bg-graybg">
+    <div className="flex w-full h-full bg-graybg">
       <div className="p-12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-md">
         <div className="w-[500px] flex flex-col ">
           <h1 className="text-4xl font-bold text-center">BookNow</h1>
@@ -70,8 +76,8 @@ const LoginPage = () => {
               </label>
               <input
                 type="text"
-                id="username"
-                name="username"
+                onChange={(e) => setUserName(e.target.value)}
+                value={username}
                 className="mt-1 focus:outline-none w-full shadow-sm sm:text-sm border border-gray-300 rounded-md h-8"
               />
             </div>
@@ -83,9 +89,9 @@ const LoginPage = () => {
                 Password
               </label>
               <input
-                type="password"
-                id="password"
-                name="password"
+                type="text"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 className="mt-1 focus:outline-none w-full shadow-sm sm:text-sm border border-gray-300 rounded-md h-8"
               />
             </div>

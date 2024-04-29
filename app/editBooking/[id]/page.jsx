@@ -1,4 +1,4 @@
-import EditTopicForm from "../../../components/EditTopicForm";
+import EditTopicForm from "../../../constant/EditTopicForm";
 
 const getTopicById = async (id) => {
   try {
@@ -19,7 +19,8 @@ const getTopicById = async (id) => {
 export default async function EditTopic({ params }) {
   const { id } = params;
   const { booking } = await getTopicById(id);
-  const { date, startTime, endTime, price, capacity, promoCode } = booking;
+  const { date, startTime, endTime, price, capacity, promoCode, timeSlots } =
+    booking;
 
   return (
     <EditTopicForm
@@ -30,6 +31,7 @@ export default async function EditTopic({ params }) {
       price={price}
       capacity={capacity}
       promoCode={promoCode}
+      timeSlots={timeSlots}
     />
   );
 }

@@ -12,12 +12,12 @@ const StudentNavBar = ({ text1, text2 }) => {
           </Link>
           <ul className="flex">
             <li className="mr-6">
-              <Link href="/createBooking">
+              <Link href="/studentBooking">
                 <div className="text-white cursor-pointer">{text1}</div>
               </Link>
             </li>
             <li>
-              <Link href="/manageBooking">
+              <Link href="/studentManage">
                 <div className="text-white cursor-pointer">{text2}</div>
               </Link>
             </li>

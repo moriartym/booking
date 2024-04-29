@@ -1,14 +1,20 @@
 import mongoose, { Schema } from "mongoose";
 
+const timeSlotSchema = new mongoose.Schema({
+  startTime: String,
+  booked: { type: Boolean, default: false },
+});
+
 const bookingSchema = new Schema(
   {
     date: Date,
     startTime: String,
     endTime: String,
+    timeSlots: [timeSlotSchema],
     price: Number,
     capacity: Number,
     promoCode: String,
-    booked: Boolean,
+    timeBooked: Number,
   },
   {
     timestamps: true,

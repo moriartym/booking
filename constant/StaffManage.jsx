@@ -1,4 +1,7 @@
-import StudentNavBar from "../../components/studentNavbar";
+import Link from "next/link";
+import RemoveBtn from "../components/RemoveBtn";
+import { HiPencilAlt } from "react-icons/hi";
+import StaffNavbar from "../components/StaffNavbar";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -24,13 +27,13 @@ const getBookings = async () => {
   }
 };
 
-export default async function TopicsList() {
+export default async function StaffManage() {
   const { bookings } = await getBookings();
 
   return (
     <>
       <div className="max-w-4xl mx-auto p-4">
-        <StudentNavBar text1="Create Booking" text2="Manage Booking" />
+        <StaffNavbar text1="Create Room" text2="Manage Room" />
         {bookings.map((booking) => (
           <div
             key={booking._id}
@@ -40,14 +43,16 @@ export default async function TopicsList() {
               <h2 className="font-bold text-2xl">{formatDate(booking.date)}</h2>
               <div>Start Time: {booking.startTime}</div>
               <div>End Time: {booking.endTime}</div>
-              <div>Price: {booking.price}</div>
+              <div>Price: {booking.price} $</div>
               <div>Capacity: {booking.capacity}</div>
+              <div>Promo Code: {booking.promoCode}</div>
             </div>
 
-            <div className="flex gap-2">
-              <button className="bg-red-400 text-white px-4 py-2 rounded">
-                Cancel Bookings
-              </button>
+            <div className="flex gap-2 items-center">
+              <RemoveBtn id={booking._id} />
+              <Link href={`/editBooking/${booking._id}`}>
+                <HiPencilAlt size={24} />
+              </Link>
             </div>
           </div>
         ))}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const NavBar = ({ text1, text2 }) => {
+const StaffNavbar = ({ text1, text2 }) => {
   return (
     <header className="bg-black p-6">
       <nav className="flex items-center justify-between pr-32 pl-32">
@@ -12,12 +12,12 @@ const NavBar = ({ text1, text2 }) => {
           </Link>
           <ul className="flex">
             <li className="mr-6">
-              <Link href="/addBooking">
+              <Link href="/staffBooking">
                 <div className="text-white cursor-pointer">{text1}</div>
               </Link>
             </li>
             <li>
-              <Link href="/manageRoom">
+              <Link href="/staffManage">
                 <div className="text-white cursor-pointer">{text2}</div>
               </Link>
             </li>
@@ -35,4 +35,4 @@ const NavBar = ({ text1, text2 }) => {
   );
 };
 
-export default NavBar;
+export default StaffNavbar;

@@ -2,49 +2,55 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import NavBar from "../../components/navbar";
+import StaffNavbar from "../components/StaffNavbar";
 
-export default function AddBooking() {
-  const [date, setDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [price, setPrice] = useState("");
-  const [capacity, setCapacity] = useState("");
-  const [promoCode, setPromoCode] = useState("");
-  const booked = false;
+export default function EditTopicForm({
+  id,
+  date,
+  startTime,
+  endTime,
+  price,
+  capacity,
+  promoCode,
+  timeSlots,
+}) {
+  const [newDate, setNewDate] = useState(date);
+  const [newStartTime, setNewStartTime] = useState(startTime);
+  const [newEndTime, setNewEndTime] = useState(endTime);
+  const [newPrice, setNewPrice] = useState(price);
+  const [newCapacity, setNewCapacity] = useState(capacity);
+  const [newPromoCode, setNewPromoCode] = useState(promoCode);
+  const newTimeSlots = timeSlots;
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!date || !startTime || !endTime || !price || !capacity || !promoCode) {
-      alert("Fill all detail please!");
-      return;
-    }
-
     try {
-      const res = await fetch("http://localhost:3000/api/bookings", {
-        method: "POST",
+      const res = await fetch(`http://localhost:3000/api/bookings/${id}`, {
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          date,
-          startTime,
-          endTime,
-          price,
-          capacity,
-          promoCode,
-          booked,
+          newDate,
+          newStartTime,
+          newEndTime,
+          newPrice,
+          newCapacity,
+          newPromoCode,
+          newTimeSlots,
         }),
       });
 
-      if (res.ok) {
-        router.push("/manageRoom");
-      } else {
-        throw new Error("Failed to create Room");
+      if (!res.ok) {
+        throw new Error("Failed to update Bookings");
       }
+      if (res.ok) {
+        router.refresh();
+      }
+      router.push("/staffManage");
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +58,7 @@ export default function AddBooking() {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <NavBar text1="Create Room" text2="Manage Room" />
+      <StaffNavbar text1="Create Room" text2="Manage Room" />
       <div className="flex w-screen h-screen bg-graybg">
         <div className="p-12 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-md">
           <div className="w-[500px] flex flex-col ">
@@ -66,9 +72,9 @@ export default function AddBooking() {
                   Date
                 </label>
                 <input
-                  onChange={(e) => setDate(e.target.value)}
-                  value={date}
-                  placeholder="date"
+                  onChange={(e) => setNewDate(e.target.value)}
+                  value={newDate}
+                  placeholder="Date"
                   type="date"
                   className="mt-1 focus:outline-none w-full shadow-sm sm:text-sm border border-gray-300 rounded-md h-8"
                 />
@@ -81,8 +87,8 @@ export default function AddBooking() {
                   Start Time
                 </label>
                 <input
-                  onChange={(e) => setStartTime(e.target.value)}
-                  value={startTime}
+                  onChange={(e) => setNewStartTime(e.target.value)}
+                  value={newStartTime}
                   placeholder="Start Time"
                   type="time"
                   className="mt-1 focus:outline-none w-full shadow-sm sm:text-sm border border-gray-300 rounded-md h-8"
@@ -96,8 +102,8 @@ export default function AddBooking() {
                   End Time
                 </label>
                 <input
-                  onChange={(e) => setEndTime(e.target.value)}
-                  value={endTime}
+                  onChange={(e) => setNewEndTime(e.target.value)}
+                  value={newEndTime}
                   placeholder="End Time"
                   type="time"
                   className="mt-1 focus:outline-none w-full shadow-sm sm:text-sm border border-gray-300 rounded-md h-8"
@@ -112,9 +118,9 @@ export default function AddBooking() {
                 </label>
                 <input
                   type="text"
-                  onChange={(e) => setPrice(e.target.value)}
-                  value={price}
-                  placeholder="price"
+                  onChange={(e) => setNewPrice(e.target.value)}
+                  value={newPrice}
+                  placeholder="Price"
                   className="mt-1 focus:outline-none w-full shadow-sm sm:text-sm border border-gray-300 rounded-md h-8"
                 />
               </div>
@@ -126,8 +132,8 @@ export default function AddBooking() {
                   Capacity
                 </label>
                 <input
-                  onChange={(e) => setCapacity(e.target.value)}
-                  value={capacity}
+                  onChange={(e) => setNewCapacity(e.target.value)}
+                  value={newCapacity}
                   placeholder="Capacity"
                   type="text"
                   className="mt-1 focus:outline-none w-full shadow-sm sm:text-sm border border-gray-300 rounded-md h-8"
@@ -135,14 +141,14 @@ export default function AddBooking() {
               </div>
               <div className="mb-4">
                 <label
-                  htmlFor="promocode"
+                  htmlFor="promoCode"
                   className="block text-sm font-medium text-gray-700"
                 >
                   Promo Code
                 </label>
                 <input
-                  onChange={(e) => setPromoCode(e.target.value)}
-                  value={promoCode}
+                  onChange={(e) => setNewPromoCode(e.target.value)}
+                  value={newPromoCode}
                   placeholder="Promo Code"
                   type="text"
                   className="mt-1 focus:outline-none w-full shadow-sm sm:text-sm border border-gray-300 rounded-md h-8"
