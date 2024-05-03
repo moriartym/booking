@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import CancelBtn from "../components/CancelButton";
 import StudentNavBar from "../components/studentNavbar";
 import { useState, useEffect } from "react";
@@ -13,19 +14,16 @@ const formatDate = (dateString) => {
 };
 
 export default function StudentManage({ booking }) {
-  const handleTimeSlot = (timeSlots, selectedSlot) => {
-    const updatedTimeSlots = [...timeSlots];
-
-    updatedTimeSlots[selectedSlot] = {
-      ...updatedTimeSlots[selectedSlot],
+  const handleTimeSlot = (timeSlots) => {
+    return timeSlots.map((slot) => ({
+      ...slot,
       booked: false,
-    };
-    return updatedTimeSlots;
+    }));
   };
 
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-  const newTimeSlots = handleTimeSlot(booking.timeSlots, selectedSlot);
+  const newTimeSlots = handleTimeSlot(booking.timeSlots);
 
   const handleSlotClick = (index) => {
     setSelectedSlot(index);
@@ -87,6 +85,11 @@ export default function StudentManage({ booking }) {
             </div>
 
             <CancelBtn booking={booking} newTimeSlots={newTimeSlots} />
+            <Link className="ml-4" href={`/editStudent/${booking._id}`}>
+              <button className="bg-blue-400 text-white px-4 py-2 rounded">
+                Modify TimeSlot
+              </button>
+            </Link>
           </div>
         )}
       </div>

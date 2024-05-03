@@ -12,7 +12,7 @@ export default function HandleDeleteBtn({
   id,
 }) {
   const router = useRouter();
-  newTimeBooked = newTimeBooked - 1;
+  newTimeBooked = 0;
 
   const handleDelete = async (e) => {
     e.preventDefault();
