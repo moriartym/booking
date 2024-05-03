@@ -19,12 +19,21 @@ const getTopicById = async (id) => {
 export default async function EditTopic({ params }) {
   const { id } = params;
   const { booking } = await getTopicById(id);
-  const { date, startTime, endTime, price, capacity, promoCode, timeSlots } =
-    booking;
+  const {
+    date,
+    name,
+    startTime,
+    endTime,
+    price,
+    capacity,
+    promoCode,
+    timeSlots,
+  } = booking;
 
   return (
     <EditTopicForm
       id={id}
+      name={name}
       date={date}
       startTime={startTime}
       endTime={endTime}

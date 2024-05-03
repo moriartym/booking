@@ -6,6 +6,7 @@ export async function PUT(request, { params }) {
   const { id } = params;
   const {
     newDate: date,
+    newName: name,
     newStartTime: startTime,
     newEndTime: endTime,
     newPrice: price,
@@ -17,6 +18,7 @@ export async function PUT(request, { params }) {
   await connectMongoDB();
   await Booking.findByIdAndUpdate(id, {
     date,
+    name,
     startTime,
     endTime,
     price,

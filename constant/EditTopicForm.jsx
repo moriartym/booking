@@ -6,6 +6,7 @@ import StaffNavbar from "../components/StaffNavbar";
 
 export default function EditTopicForm({
   id,
+  name,
   date,
   startTime,
   endTime,
@@ -15,6 +16,7 @@ export default function EditTopicForm({
   timeSlots,
 }) {
   const [newDate, setNewDate] = useState(date);
+  const [newName, setNewName] = useState(name);
   const [newStartTime, setNewStartTime] = useState(startTime);
   const [newEndTime, setNewEndTime] = useState(endTime);
   const [newPrice, setNewPrice] = useState(price);
@@ -35,6 +37,7 @@ export default function EditTopicForm({
         },
         body: JSON.stringify({
           newDate,
+          newName,
           newStartTime,
           newEndTime,
           newPrice,
@@ -64,6 +67,21 @@ export default function EditTopicForm({
           <div className="w-[500px] flex flex-col ">
             <h1 className="text-4xl font-bold text-center m-4">Room Details</h1>
             <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Name
+                </label>
+                <input
+                  onChange={(e) => setNewName(e.target.value)}
+                  value={newName}
+                  placeholder="name"
+                  type="name"
+                  className="mt-1 focus:outline-none w-full shadow-sm sm:text-sm border border-gray-300 rounded-md h-8"
+                />
+              </div>
               <div className="mb-4">
                 <label
                   htmlFor="startDate"

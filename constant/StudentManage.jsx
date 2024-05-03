@@ -34,10 +34,6 @@ export default function StudentManage({ booking }) {
     console.log(selectedSlot);
   };
 
-  useEffect(() => {
-    console.log("selected slot changed:", selectedSlot);
-  }, [selectedSlot]);
-
   const getSlotClassNames = (selectedSlot, index) => {
     let classNames;
 
@@ -85,6 +81,7 @@ export default function StudentManage({ booking }) {
                 ))}
               </div>
 
+              <div>Room name : {booking.name}</div>
               <div>Price: {booking.price} $</div>
               <div>Capacity: {booking.capacity}</div>
             </div>

@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 
 export default function HandleVerifyBtn({
   newDate,
+  newName,
   newStartTime,
   newEndTime,
   newPrice,
@@ -26,6 +27,7 @@ export default function HandleVerifyBtn({
           },
           body: JSON.stringify({
             newDate,
+            newName,
             newStartTime,
             newEndTime,
             newPrice,

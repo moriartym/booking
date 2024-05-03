@@ -39,8 +39,9 @@ export default async function StaffManage() {
             key={booking._id}
             className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
           >
-            <div>
+            <div className="p-4">
               <h2 className="font-bold text-2xl">{formatDate(booking.date)}</h2>
+              <div>Room Name: {booking.name}</div>
               <div>Start Time: {booking.startTime}</div>
               <div>End Time: {booking.endTime}</div>
               <div>Price: {booking.price} $</div>
@@ -48,7 +49,7 @@ export default async function StaffManage() {
               <div>Promo Code: {booking.promoCode}</div>
             </div>
 
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center p-4">
               <RemoveBtn id={booking._id} />
               <Link href={`/editBooking/${booking._id}`}>
                 <HiPencilAlt size={24} />

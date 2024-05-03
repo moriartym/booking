@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { date, startTime, endTime, price, capacity, promoCode } =
+    const { date, name, startTime, endTime, price, capacity, promoCode } =
       await request.json();
 
     await connectMongoDB();
@@ -13,6 +13,7 @@ export async function POST(request) {
 
     const booking = await Booking.create({
       date,
+      name,
       startTime,
       endTime,
       price,

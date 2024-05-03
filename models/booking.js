@@ -8,6 +8,7 @@ const timeSlotSchema = new mongoose.Schema({
 const bookingSchema = new Schema(
   {
     date: Date,
+    name: String,
     startTime: String,
     endTime: String,
     timeSlots: [timeSlotSchema],

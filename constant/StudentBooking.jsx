@@ -29,6 +29,7 @@ const StudentBooking = ({ bookings }) => {
   const { _id, promoCode } = bookings;
   const promo = promoCode;
   const newDate = bookings.date;
+  const newName = bookings.name;
   const newStartTime = bookings.startTime;
   const newEndTime = bookings.endTime;
   const newPrice = bookings.price;
@@ -94,6 +95,7 @@ const StudentBooking = ({ bookings }) => {
               </div>
             ))}
           </div>
+          <div>Room name : {bookings.name}</div>
           <div>Time : 1 hour</div>
           <div>Price: {bookings.price} $</div>
           <div>Capacity: {bookings.capacity}</div>
@@ -107,6 +109,7 @@ const StudentBooking = ({ bookings }) => {
             />
             <HandleVerifyBtn
               newDate={newDate}
+              newName={newName}
               newStartTime={newStartTime}
               newEndTime={newEndTime}
               newPrice={newPrice}
